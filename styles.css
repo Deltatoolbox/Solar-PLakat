@@ -1,0 +1,306 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #87CEEB, #1E90FF);
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+}
+
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    z-index: 1;
+}
+
+.cloud:before,
+.cloud:after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+}
+
+.cloud1 {
+    width: 200px;
+    height: 60px;
+    top: 100px;
+    left: -200px;
+    animation: moveCloud 20s linear infinite;
+}
+
+.cloud1:before {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+    left: 20px;
+}
+
+.cloud1:after {
+    width: 100px;
+    height: 100px;
+    top: -50px;
+    right: 20px;
+}
+
+.cloud2 {
+    width: 150px;
+    height: 45px;
+    top: 200px;
+    right: -150px;
+    animation: moveCloud 25s linear infinite;
+}
+
+.cloud2:before {
+    width: 60px;
+    height: 60px;
+    top: -30px;
+    left: 15px;
+}
+
+.cloud2:after {
+    width: 80px;
+    height: 80px;
+    top: -40px;
+    right: 15px;
+}
+
+.cloud3 {
+    width: 180px;
+    height: 54px;
+    top: 300px;
+    left: -180px;
+    animation: moveCloud 30s linear infinite;
+}
+
+.cloud3:before {
+    width: 70px;
+    height: 70px;
+    top: -35px;
+    left: 18px;
+}
+
+.cloud3:after {
+    width: 90px;
+    height: 90px;
+    top: -45px;
+    right: 18px;
+}
+
+@keyframes moveCloud {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(calc(100vw + 100%));
+    }
+}
+
+.sun {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #ffd700, #ff8c00);
+    border-radius: 50%;
+    box-shadow: 0 0 50px #ff8c00;
+    animation: pulse 4s infinite;
+    cursor: move;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+.moon {
+    position: absolute;
+    top: 50px;
+    left: -100px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #e0e0e0, #a0a0a0);
+    border-radius: 50%;
+    box-shadow: 0 0 30px #a0a0a0;
+    animation: float 8s ease-in-out infinite;
+}
+
+.battery {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    width: 100px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 5px;
+    transform: rotate(-90deg);
+    z-index: 2;
+    overflow: hidden;
+}
+
+.battery-wool {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1) 0px,
+        rgba(255, 255, 255, 0.1) 2px,
+        transparent 2px,
+        transparent 4px
+    );
+    z-index: 1;
+}
+
+.battery-level {
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to bottom, #4CAF50, #45a049);
+    border-radius: 5px;
+    transition: height 2s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.battery-tip {
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    width: 20px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0 5px 5px 0;
+}
+
+.solar-panel {
+    margin: 100px auto;
+    width: 400px;
+    height: 200px;
+    background: #2c3e50;
+    border-radius: 10px;
+    position: relative;
+    transform: perspective(1000px) rotateX(20deg);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+    animation: float 6s ease-in-out infinite;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.solar-panel:hover::before {
+    content: "⚡ 1.5kW/m²";
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -10px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.panel-cells {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    padding: 10px;
+    height: 100%;
+}
+
+.cell {
+    background: linear-gradient(45deg, #34495e, #2c3e50);
+    border-radius: 5px;
+    animation: shine 3s infinite;
+}
+
+.advantages {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 2;
+}
+
+.advantage {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.advantage:hover {
+    transform: translateY(-10px);
+}
+
+.advantage i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #ffd700;
+}
+
+.advantage h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.advantage p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes float {
+    0% { transform: perspective(1000px) rotateX(20deg) translateY(0); }
+    50% { transform: perspective(1000px) rotateX(20deg) translateY(-20px); }
+    100% { transform: perspective(1000px) rotateX(20deg) translateY(0); }
+}
+
+@keyframes shine {
+    0% { background: linear-gradient(45deg, #34495e, #2c3e50); }
+    50% { background: linear-gradient(45deg, #2c3e50, #34495e); }
+    100% { background: linear-gradient(45deg, #34495e, #2c3e50); }
+}
+
+@media (max-width: 768px) {
+    .solar-panel {
+        width: 300px;
+        height: 150px;
+    }
+    
+    .advantages {
+        grid-template-columns: 1fr;
+    }
+} 
